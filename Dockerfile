@@ -2,9 +2,8 @@ FROM node:8-slim
 LABEL maintainer="milan.cecrdle@gmail.com"
 WORKDIR /tmp
 COPY webdriver-versions.js ./
-ENV ENV CHROME_PACKAGE="google-chrome-stable_61.0.3163.91-1_amd64.deb" NODE_PATH=/usr/local/lib/node_modules:/protractor/node_modules
-RUN RUN npm install -g protractor@5.1.2 minimist@1.2.0 && \
-    npm i -g bower && \
+ENV CHROME_PACKAGE="google-chrome-stable_61.0.3163.91-1_amd64.deb" NODE_PATH=/usr/local/lib/node_modules:/protractor/node_modules
+RUN npm install -g protractor@5.1.2 minimist@1.2.0 && \
     node ./webdriver-versions.js --chromedriver 2.32 && \
     webdriver-manager update && \
     echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
